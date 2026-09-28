@@ -9,6 +9,240 @@
 <link rel="icon" type="image/png" href="./images/doctor/dr-tikenjit-favicon.png?v=3">
 <link rel="manifest" href="./site.webmanifest">
 <link rel="stylesheet" href="./css/style.css">
+
+<style>
+/* =========================================================
+   MOBILE-RESPONSIVE FOOTER FIX
+   Added specifically for the footer without changing the
+   rest of the page design.
+   ========================================================= */
+
+.footer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.footer .container {
+  width: min(1180px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(150px, .75fr) minmax(220px, 1fr);
+  gap: 48px;
+  align-items: start;
+  padding-top: 64px;
+  padding-bottom: 42px;
+}
+
+.footer-grid > div {
+  min-width: 0;
+}
+
+.footer-grid .brand {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.footer-grid .brand > span:last-child {
+  min-width: 0;
+}
+
+.footer-grid .brand strong,
+.footer-grid .brand small {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.footer-grid .brand small {
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.footer-grid > div:first-child > p {
+  max-width: 430px;
+  margin-top: 18px;
+  line-height: 1.75;
+}
+
+.footer-grid h3 {
+  margin: 0 0 18px;
+}
+
+.footer-grid p {
+  margin: 0 0 11px;
+  line-height: 1.65;
+}
+
+.footer-grid a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.footer-grid .brand-logo {
+  flex: 0 0 auto;
+}
+
+.footer-grid .brand-logo img {
+  display: block;
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+  padding-top: 22px;
+  padding-bottom: 24px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.footer-bottom span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1.2fr .8fr;
+    gap: 34px 28px;
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .footer-grid > div:first-child > p {
+    max-width: 650px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    text-align: left;
+  }
+
+  .footer .container {
+    width: min(100% - 32px, 560px);
+  }
+
+  .footer-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 46px;
+    padding-bottom: 28px;
+  }
+
+  .footer-grid > div {
+    width: 100%;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+
+  .footer-grid > div:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .footer-grid > div:first-child {
+    grid-column: auto;
+  }
+
+  .footer-grid .brand {
+    width: 100%;
+    align-items: center;
+  }
+
+  .footer-grid .brand-logo img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .footer-grid .brand strong {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .footer-grid .brand small {
+    font-size: 11px;
+  }
+
+  .footer-grid > div:first-child > p {
+    max-width: none;
+    margin-top: 15px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .footer-grid h3 {
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+
+  .footer-grid p {
+    margin-bottom: 9px;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 7px;
+    padding-top: 19px;
+    padding-bottom: 22px;
+    font-size: 11px;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 380px) {
+  .footer .container {
+    width: calc(100% - 24px);
+  }
+
+  .footer-grid {
+    padding-top: 38px;
+  }
+
+  .footer-grid .brand {
+    gap: 9px;
+  }
+
+  .footer-grid .brand-logo img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .footer-grid .brand strong {
+    font-size: 15px;
+  }
+
+  .footer-grid .brand small {
+    font-size: 10px;
+  }
+
+  .footer-grid p {
+    font-size: 13px;
+  }
+}
+</style>
+
 </head>
 <body>
 
@@ -156,7 +390,7 @@
 <div class="stat"><strong>23+</strong><span>Years practicing urology</span></div><div class="stat"><strong>2008</strong><span>MBBS graduation</span></div><div class="stat"><strong>2014</strong><span>Postgraduate studies</span></div><div class="stat"><strong>19629</strong><span>Professional registration no.</span></div>
 </div></div></section>
 
-<section class="section"><div class="container split"><div class="about-visual reveal"><div class="kicker" style="color:#8de4dd">Professional Profile</div><h2 style="color:#fff">A global-standard approach to urology care.</h2><div class="quote"><strong>“Global standard in urology care.”</strong><span>Dr. Tikenjit Mazumdar · Senior Consultant Urology</span></div></div>
+<section class="section"><div class="container split"><div class="about-visual home-about-visual reveal"><div class="kicker" style="color:#8de4dd">Professional Profile</div><h2 style="color:#fff">A global-standard approach to urology care.</h2><div class="quote"><strong>“Global standard in urology care.”</strong><span>Dr. Tikenjit Mazumdar · Senior Consultant Urology</span></div></div>
 <div class="reveal"><div class="kicker">About the Doctor</div><h2>Experience across leading hospital settings.</h2><p class="muted">Dr. Tikenjit Mazumdar is a Senior Consultant Urology at Lower Assam Hospital &amp; Research Centre, Bongaigaon. His profile lists previous consultant roles at Apollo Hospital, Narayana Hospital and GNRC Hospital.</p><ul class="list"><li>MBBS from AMC Dibrugarh, Dibrugarh University</li><li>Postgraduate studies at Guwahati Medical College</li><li>Major expertise in robotic urology, uro-oncology and reconstruction</li><li>Languages: Assamese, English, Hindi and Bengali</li><li>Teaching, training and professional conference presentation experience</li></ul><a class="btn btn-dark" href="about.html">View Full Profile →</a></div></div></section>
 
 <section class="section"><div class="container"><div class="section-head reveal"><div class="kicker">Patient Journey</div><h2>A simple path from consultation to care.</h2></div><div class="process">
@@ -308,11 +542,51 @@
 
 </main>
 
-<footer class="footer"><div class="container footer-grid">
-<div><a class="brand" href="./index.html"><span class="brand-mark brand-logo"><img src="./images/doctor/dr-tikenjit-avatar.jpg" alt="Dr. Tikenjit Mazumdar"></span><span><strong style="color:#fff">Dr. Tikenjit Mazumdar</strong><small style="color:#9db9b7">Global standard in urology care</small></span></a><p>Senior Consultant Urology at Lower Assam Hospital &amp; Research Centre, Bongaigaon, Assam.</p></div>
-<div><h3>Explore</h3><p><a href="./about.html">About Dr. Tikenjit</a></p><p><a href="./services.html">Urology Services</a></p><p><a href="./blog.html">Patient Insights</a></p></div>
-<div><h3>Appointments</h3><p><a href="tel:+919435720622">+91 94357 20622</a></p><p><a href="tel:+919707717198">+91 97077 17198</a></p><p><a href="tel:+919864238463">+91 98642 38463</a></p><p>Lower Assam Hospital &amp; Research Centre<br>Bongaigaon, Assam</p></div>
-</div><div class="container footer-bottom"><span>© <span data-year></span> Dr. Tikenjit Mazumdar. All rights reserved.</span><span>Website by BrandYatri</span></div></footer>
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <div class="footer-about">
+      <a class="brand" href="./index.html" aria-label="Dr. Tikenjit Mazumdar home">
+        <span class="brand-mark brand-logo">
+          <img src="./images/doctor/dr-tikenjit-avatar.jpg" alt="Dr. Tikenjit Mazumdar">
+        </span>
+        <span>
+          <strong style="color:#fff">Dr. Tikenjit Mazumdar</strong>
+          <small style="color:#9db9b7">Global standard in urology care</small>
+        </span>
+      </a>
+
+      <p>
+        Senior Consultant Urology at Lower Assam Hospital &amp; Research Centre,
+        Bongaigaon, Assam.
+      </p>
+    </div>
+
+    <div class="footer-explore">
+      <h3>Explore</h3>
+      <p><a href="./about.html">About Dr. Tikenjit</a></p>
+      <p><a href="./services.html">Urology Services</a></p>
+      <p><a href="./blog.html">Patient Insights</a></p>
+    </div>
+
+    <div class="footer-appointments">
+      <h3>Appointments</h3>
+      <p><a href="tel:+919435720622">+91 94357 20622</a></p>
+      <p><a href="tel:+919707717198">+91 97077 17198</a></p>
+      <p><a href="tel:+919864238463">+91 98642 38463</a></p>
+      <p>
+        Lower Assam Hospital &amp; Research Centre<br>
+        Bongaigaon, Assam
+      </p>
+    </div>
+
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© <span data-year></span> Dr. Tikenjit Mazumdar. All rights reserved.</span>
+    <span>Website by BrandYatri</span>
+  </div>
+</footer>
 
 <script src="./js/site-config.js"></script><script src="./js/main.js" defer></script>
 <a class="floating-appointment" href="contact.html">☎ &nbsp; Book Appointment</a></body></html>
