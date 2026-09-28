@@ -1,0 +1,38 @@
+FINAL REAL-ASSET MANIFEST
+
+DOCTOR
+- dr-tikenjit-portrait.jpg
+- dr-tikenjit-office.jpg
+- dr-tikenjit-robotic-surgery.jpg
+
+SERVICES
+- robotic-urology-procedure.jpg
+- robotic-urology-equipment.jpg
+- operating-room-team.jpg
+- operating-room-monitoring.jpg
+- urology-award-newspaper.jpg
+
+HOSPITAL / PROFESSIONAL
+- urology-conference.jpg
+- medical-conference.jpg
+
+AWARDS
+- medical-presentation.jpg
+- recognition-stage.jpg
+- recognition-stage-2.jpg
+
+GALLERY
+- event-award-01.jpg
+- event-award-02.jpg
+- doctor-team-01.jpg
+- patient-family-01.jpg
+- doctor-patient-01.jpg
+- doctor-patient-02.jpg
+- doctor-patient-03.jpg
+- doctor-presentation-01.jpg
+- doctor-consultation-02.jpg
+- doctor-presentation-02.jpg
+- doctor-team-02.jpg
+
+BLOG
+12 renamed blog-cover files are included under images/blog/.

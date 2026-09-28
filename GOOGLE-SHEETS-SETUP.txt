@@ -1,0 +1,25 @@
+GOOGLE SHEETS APPOINTMENT FORM SETUP
+==================================
+
+1. Create/open a Google Sheet.
+2. Extensions -> Apps Script.
+3. Replace the script with:
+
+function doPost(e) {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName("Appointments") || ss.insertSheet("Appointments");
+  if (sheet.getLastRow() === 0) sheet.appendRow(["Timestamp","Name","Email","Phone","Preferred Contact","Appointment Type","Preferred Date","Message"]);
+  var p = e.parameter || {};
+  sheet.appendRow([new Date(),p.name||"",p.email||"",p.phone||"",p.preferred_contact||"",p.appointment_type||"",p.preferred_date||"",p.message||""]);
+  return ContentService.createTextOutput(JSON.stringify({success:true})).setMimeType(ContentService.MimeType.JSON);
+}
+
+4. Deploy -> New deployment -> Web app.
+5. Execute as: Me.
+6. Who has access: Anyone.
+7. Deploy and copy the Web app URL ending in /exec.
+8. Open js/site-config.js in this project.
+9. Replace PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE with your /exec URL.
+10. Push the project to GitHub Pages.
+
+The website form now submits Name, Email, Phone, Preferred Contact, Appointment Type, Preferred Date and Message directly to the Appointments sheet. It does NOT open WhatsApp for appointment submission.
