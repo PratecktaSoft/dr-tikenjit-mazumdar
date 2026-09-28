@@ -1466,9 +1466,62 @@ main{overflow:hidden}
   }
 }
 
+/* =========================================================
+   HOME PAGE — DIFFERENT PROFESSIONAL PROFILE IMAGE
+   ========================================================= */
 
+.home-about-visual{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(38,24,65,.94),
+      rgba(89,61,139,.84)
+    ),
+    url("../images/hospital/home-profile-background.png")
+    center / cover no-repeat !important;
 
-/* FINAL TARGET: keep the exact Professional Profile design used in the reference */
+  position:relative;
+  overflow:hidden;
+}
+
+/* Same decorative blur/glass feel */
+.home-about-visual::before{
+  content:"";
+  position:absolute;
+  inset:-15px;
+  background:inherit;
+  filter:blur(3px);
+  transform:scale(1.05);
+  z-index:-2;
+}
+
+/* Purple glass overlay */
+.home-about-visual::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(38,24,65,.88),
+      rgba(89,61,139,.72)
+    );
+  z-index:-1;
+  pointer-events:none;
+}
+
+/* Keep text above background */
+.home-about-visual > *{
+  position:relative;
+  z-index:2;
+}
+
+/* =========================================================
+   FINAL FIX — HOME PROFILE BOX = EXACT ABOUT BOX DESIGN
+   Different image, identical box design
+   ========================================================= */
+
+/* ABOUT PAGE — keep About image */
 .about-visual{
   border-radius:30px;
   min-height:500px;
@@ -1478,9 +1531,30 @@ main{overflow:hidden}
   color:#fff;
   background:
     linear-gradient(135deg,rgba(38,24,65,.94),rgba(89,61,139,.84)),
-    url('../images/hospital/about-background.jpg') center/cover no-repeat;
+    url("../images/hospital/about-background.jpg") center/cover no-repeat !important;
 }
-.about-visual:after{
+
+/* HOME PAGE — EXACT SAME DESIGN, DIFFERENT IMAGE */
+.home-about-visual{
+  border-radius:30px;
+  min-height:500px;
+  position:relative;
+  overflow:hidden;
+  padding:32px;
+  color:#fff;
+
+  /* ONLY THE IMAGE IS DIFFERENT FROM ABOUT PAGE */
+  background:
+    linear-gradient(135deg,rgba(38,24,65,.94),rgba(89,61,139,.84)),
+    url("../images/hospital/home-profile-background.png") center/cover no-repeat !important;
+
+  /* Same About-page animation */
+  animation:visualFloat 7s ease-in-out infinite;
+}
+
+/* Same decorative circle as About page */
+.about-visual::after,
+.home-about-visual::after{
   content:"";
   position:absolute;
   width:360px;
@@ -1489,35 +1563,89 @@ main{overflow:hidden}
   border-radius:50%;
   right:-130px;
   top:-120px;
+  background:none;
+  z-index:1;
   pointer-events:none;
 }
-.about-visual .quote{
+
+/* Same quote/card placement */
+.about-visual .quote,
+.home-about-visual .quote{
   position:absolute;
   bottom:30px;
   left:30px;
   right:30px;
-  border-left:3px solid #d6b56a;
+  border-left:3px solid var(--gold);
   padding-left:18px;
+  z-index:3;
+}
+
+.about-visual .quote strong,
+.home-about-visual .quote strong{
+  display:block;
+  font:800 22px Manrope;
+  margin-bottom:8px;
+  color:#fff;
+}
+
+.about-visual .quote span,
+.home-about-visual .quote span{
+  font-size:13px;
+  color:#cbe1df;
+}
+
+/* Keep every Home box child above the background */
+.home-about-visual > *{
+  position:relative;
   z-index:2;
 }
-.about-visual .quote strong{
-  display:block;
-  font:800 22px Poppins,Arial,sans-serif;
-  margin-bottom:8px;
+
+/* Preserve About-page visual animation */
+@keyframes visualFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
 }
-.about-visual .quote span{
-  font-size:13px;
-  color:#e8e0f4;
+
+/* IMPORTANT:
+   Remove the previous Home-only blur/glass pseudo treatment.
+   The Home box now uses the same visual system as About. */
+.home-about-visual::before{
+  content:none !important;
 }
+
+/* Mobile — same proportions/design as About */
 @media(max-width:620px){
-  .about-visual{
-    min-height:430px;
+  .about-visual,
+  .home-about-visual{
+    min-height:500px;
     padding:24px;
+    border-radius:24px;
+    background-position:center center;
   }
-  .about-visual .quote{
-    left:24px;
-    right:24px;
-    bottom:24px;
+
+  .about-visual .quote,
+  .home-about-visual .quote{
+    left:22px;
+    right:22px;
+    bottom:22px;
+    padding-left:15px;
   }
-  .about-visual .quote strong{font-size:18px}
+
+  .about-visual .quote strong,
+  .home-about-visual .quote strong{
+    font-size:18px;
+  }
+
+  .about-visual .quote span,
+  .home-about-visual .quote span{
+    font-size:12px;
+  }
+
+  .about-visual::after,
+  .home-about-visual::after{
+    width:250px;
+    height:250px;
+    right:-110px;
+    top:-90px;
+  }
 }
