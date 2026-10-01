@@ -3,121 +3,1978 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Contact Dr. Tikenjit Mazumdar | Urology Appointment</title>
-<meta name="description" content="Appointment and location details for Dr. Tikenjit Mazumdar at Lower Assam Hospital & Research Centre, Bongaigaon.">
+
+<meta
+  name="description"
+  content="Appointment and location details for Dr. Tikenjit Mazumdar at Lower Assam Hospital & Research Centre, Bongaigaon."
+>
+
 <meta name="theme-color" content="#082c3d">
-<link rel="icon" type="image/png" href="./images/doctor/dr-tikenjit-favicon.png?v=3">
+
+<link
+  rel="icon"
+  type="image/png"
+  href="./images/doctor/dr-tikenjit-favicon.png?v=3"
+>
+
 <link rel="manifest" href="./site.webmanifest">
+
 <link rel="stylesheet" href="./css/style.css">
+
+<style>
+
+/* =========================================================
+   APPOINTMENT FORM - LOADER / NOTIFICATIONS
+   ========================================================= */
+
+/* Full screen loader */
+.appointment-loader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(125, 91, 218, 0.18),
+      rgba(5, 20, 35, 0.96)
+    );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 99999;
+}
+
+.appointment-loader.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* Loader card */
+.appointment-loader-card {
+  width: min(92%, 420px);
+  padding: 38px 28px;
+
+  text-align: center;
+
+  background: rgba(255,255,255,0.97);
+  border: 1px solid rgba(255,255,255,0.7);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.35);
+
+  animation: loaderCardIn 0.35s ease;
+}
+
+@keyframes loaderCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Spinner */
+.appointment-spinner {
+  width: 58px;
+  height: 58px;
+
+  margin: 0 auto 22px;
+
+  border-radius: 50%;
+
+  border: 5px solid rgba(112, 84, 210, 0.16);
+  border-top-color: #7357d8;
+  border-right-color: #2589d9;
+
+  animation: appointmentSpin 0.85s linear infinite;
+}
+
+@keyframes appointmentSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.appointment-loader-card h3 {
+  margin: 0 0 8px;
+
+  font-size: 22px;
+  line-height: 1.3;
+
+  color: #16253d;
+}
+
+.appointment-loader-card p {
+  margin: 0;
+
+  color: #68758a;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   TOAST NOTIFICATION
+   ========================================================= */
+
+.appointment-toast {
+  position: fixed;
+
+  top: 24px;
+  right: 24px;
+
+  width: min(420px, calc(100% - 32px));
+
+  padding: 17px 18px;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  background: rgba(255,255,255,0.98);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 20px 55px rgba(20,30,50,0.22);
+
+  border: 1px solid rgba(0,0,0,0.06);
+
+  transform: translateX(calc(100% + 40px));
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    transform 0.4s cubic-bezier(.22,1,.36,1),
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+  z-index: 100000;
+}
+
+.appointment-toast.show {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.appointment-toast-icon {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.appointment-toast.success .appointment-toast-icon {
+  background: rgba(35, 170, 110, 0.12);
+  color: #16945d;
+}
+
+.appointment-toast.error .appointment-toast-icon {
+  background: rgba(220, 60, 70, 0.12);
+  color: #d63645;
+}
+
+.appointment-toast-content {
+  flex: 1;
+}
+
+.appointment-toast-title {
+  margin: 0 0 4px;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  color: #17243a;
+}
+
+.appointment-toast-message {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.55;
+
+  color: #68758a;
+}
+
+.appointment-toast-close {
+  border: 0;
+  background: transparent;
+
+  cursor: pointer;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #8791a1;
+
+  font-size: 19px;
+}
+
+/* =========================================================
+   FORM SUBMIT BUTTON
+   ========================================================= */
+
+.form-submit-btn {
+  position: relative;
+  min-height: 52px;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.form-submit-btn.is-loading {
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.form-submit-btn .button-loader {
+  display: none;
+}
+
+.form-submit-btn.is-loading .button-text {
+  display: none;
+}
+
+.form-submit-btn.is-loading .button-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.button-spinner {
+  width: 17px;
+  height: 17px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+
+  animation: appointmentSpin 0.7s linear infinite;
+}
+
+/* =========================================================
+   INLINE STATUS
+   ========================================================= */
+
+#appointmentStatus {
+  min-height: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  transition:
+    margin 0.25s ease,
+    opacity 0.25s ease;
+}
+
+#appointmentStatus:not(:empty) {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.form-status.success {
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background: rgba(32, 165, 105, 0.09);
+  border: 1px solid rgba(32, 165, 105, 0.18);
+
+  color: #147b50;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.form-status.error {
+  padding: 12px 14px;
+
+  border-radius: 10px;
+
+  background: rgba(214, 54, 69, 0.08);
+  border: 1px solid rgba(214, 54, 69, 0.15);
+
+  color: #b52c39;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   FORM FIELD ERROR
+   ========================================================= */
+
+.form-field.field-error input,
+.form-field.field-error select,
+.form-field.field-error textarea {
+  border-color: #d63645 !important;
+
+  box-shadow:
+    0 0 0 3px rgba(214,54,69,0.08);
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+  .appointment-loader-card {
+    width: calc(100% - 28px);
+    padding: 32px 22px;
+    border-radius: 20px;
+  }
+
+  .appointment-spinner {
+    width: 50px;
+    height: 50px;
+  }
+
+  .appointment-loader-card h3 {
+    font-size: 20px;
+  }
+
+  .appointment-toast {
+    top: 14px;
+    right: 14px;
+    width: calc(100% - 28px);
+  }
+
+}
+
+</style>
 </head>
+
 <body>
 
-<div class="topbar"><div class="container"><span>Lower Assam Hospital &amp; Research Centre · Bongaigaon, Assam</span><span class="top-hide">Appointments: <a href="tel:+919435720622">+91 94357 20622</a></span></div></div>
-<header class="site-header"><div class="container nav">
-<a class="brand" href="./index.html"><span class="brand-mark brand-logo"><img src="./images/doctor/dr-tikenjit-avatar.jpg" alt="Dr. Tikenjit Mazumdar"></span><span><strong>Dr. Tikenjit Mazumdar</strong><small>Senior Consultant Urology</small></span></a>
-<button class="menu-btn" aria-label="Open navigation" aria-expanded="false">☰</button>
-<nav class="nav-links" aria-label="Primary navigation">
-<a href="./index.html">Home</a><a href="./about.html">About</a><a href="./services.html">Services</a><a href="./blog.html">Insights</a><a href="./contact.html">Contact</a>
-</nav><a class="nav-cta" href="./contact.html">Book Consultation</a>
-</div></header><div class="ticker"><div class="ticker-track">
-<span class="ticker-item">Advanced Urology Care <span>•</span></span>
-<span class="ticker-item">Robotic Urology <span>•</span></span>
-<span class="ticker-item">Uro-Oncology <span>•</span></span>
-<span class="ticker-item">Reconstructive Urology <span>•</span></span>
-<span class="ticker-item">Bongaigaon, Assam <span>•</span></span>
-<span class="ticker-item">Advanced Urology Care <span>•</span></span>
-<span class="ticker-item">Robotic Urology <span>•</span></span>
-<span class="ticker-item">Uro-Oncology <span>•</span></span>
-<span class="ticker-item">Reconstructive Urology <span>•</span></span>
-<span class="ticker-item">Bongaigaon, Assam <span>•</span></span>
-</div></div>
+<!-- =========================================================
+     TOP BAR
+     ========================================================= -->
 
+<div class="topbar">
+  <div class="container">
+
+    <span>
+      Lower Assam Hospital &amp; Research Centre · Bongaigaon, Assam
+    </span>
+
+    <span class="top-hide">
+      Appointments:
+      <a href="tel:+919435720622">
+        +91 94357 20622
+      </a>
+    </span>
+
+  </div>
+</div>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+  <div class="container nav">
+
+    <a class="brand" href="./index.html">
+
+      <span class="brand-mark brand-logo">
+        <img
+          src="./images/doctor/dr-tikenjit-avatar.jpg"
+          alt="Dr. Tikenjit Mazumdar"
+        >
+      </span>
+
+      <span>
+        <strong>Dr. Tikenjit Mazumdar</strong>
+        <small>Senior Consultant Urology</small>
+      </span>
+
+    </a>
+
+    <button
+      class="menu-btn"
+      aria-label="Open navigation"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <nav
+      class="nav-links"
+      aria-label="Primary navigation"
+    >
+
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./services.html">Services</a>
+      <a href="./blog.html">Insights</a>
+      <a href="./contact.html">Contact</a>
+
+    </nav>
+
+    <a
+      class="nav-cta"
+      href="./contact.html"
+    >
+      Book Consultation
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     TICKER
+     ========================================================= -->
+
+<div class="ticker">
+
+  <div class="ticker-track">
+
+    <span class="ticker-item">
+      Advanced Urology Care <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Robotic Urology <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Uro-Oncology <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Reconstructive Urology <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Bongaigaon, Assam <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Advanced Urology Care <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Robotic Urology <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Uro-Oncology <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Reconstructive Urology <span>•</span>
+    </span>
+
+    <span class="ticker-item">
+      Bongaigaon, Assam <span>•</span>
+    </span>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     FULL SCREEN LOADER
+     ========================================================= -->
+
+<div
+  id="appointmentLoader"
+  class="appointment-loader"
+  aria-hidden="true"
+>
+
+  <div
+    class="appointment-loader-card"
+    role="status"
+    aria-live="polite"
+  >
+
+    <div class="appointment-spinner"></div>
+
+    <h3>Submitting Appointment Request</h3>
+
+    <p>
+      Please wait while we securely send your appointment details.
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST NOTIFICATION
+     ========================================================= -->
+
+<div
+  id="appointmentToast"
+  class="appointment-toast"
+  role="alert"
+  aria-live="assertive"
+>
+
+  <div
+    id="appointmentToastIcon"
+    class="appointment-toast-icon"
+  >
+    ✓
+  </div>
+
+  <div class="appointment-toast-content">
+
+    <p
+      id="appointmentToastTitle"
+      class="appointment-toast-title"
+    >
+      Appointment Submitted
+    </p>
+
+    <p
+      id="appointmentToastMessage"
+      class="appointment-toast-message"
+    >
+      Your appointment request has been received.
+    </p>
+
+  </div>
+
+  <button
+    id="appointmentToastClose"
+    class="appointment-toast-close"
+    type="button"
+    aria-label="Close notification"
+  >
+    ×
+  </button>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN
+     ========================================================= -->
 
 <main>
-<section class="page-hero page-hero-enhanced"><div class="container reveal"><div class="breadcrumb"><a href="index.html">Home</a> / Contact</div><div class="kicker">Appointments &amp; Location</div><h1>Consult Dr. Tikenjit Mazumdar in Bongaigaon.</h1><p class="lead">Schedule an appointment before visiting to confirm availability and consultation details.</p></div></section>
-<section class="section"><div class="container contact-grid">
-<div class="card reveal"><div class="kicker">Appointment</div><h2>Get in touch.</h2>
-<div class="contact-item"><div class="icon">☎</div><div><strong>+91 94357 20622</strong><br><a href="tel:+919435720622" style="color:var(--teal);font-weight:800">Call now</a></div></div>
-<div class="contact-item"><div class="icon">☎</div><div><strong>+91 97077 17198</strong><br><a href="tel:+919707717198" style="color:var(--teal);font-weight:800">Call now</a></div></div>
-<div class="contact-item"><div class="icon">☎</div><div><strong>+91 98642 38463</strong><br><a href="tel:+919864238463" style="color:var(--teal);font-weight:800">Call now</a></div></div>
-<div class="contact-item"><div class="icon">⌖</div><div><strong>Lower Assam Hospital &amp; Research Centre</strong><br><span class="muted">Bongaigaon, Assam</span></div></div>
-<a class="btn btn-primary" href="#appointmentForm">Request Appointment →</a>
-</div>
-<div class="card reveal"><div class="kicker">Appointment Request</div><h2>Send your details securely.</h2><form id="appointmentForm" class="form appointment-form" method="POST" action="" novalidate>
-<input type="hidden" name="_subject" value="New Urology Appointment Request — Dr. Tikenjit Mazumdar">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="true">
-<input type="hidden" name="_replyto" value="">
-<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
 
-<div class="form-row">
-  <div class="form-field">
-    <label for="name">Full Name <span>*</span></label>
-    <input id="name" name="name" type="text" required autocomplete="name" placeholder="Enter your full name">
-  </div>
-  <div class="form-field">
-    <label for="email">Email Address <span>*</span></label>
-    <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
-  </div>
-</div>
 
-<div class="form-row">
-  <div class="form-field">
-    <label for="phone">Phone Number <span>*</span></label>
-    <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210">
-  </div>
-  <div class="form-field">
-    <label for="preferred">Preferred Contact <span>*</span></label>
-    <select id="preferred" name="preferred_contact" required>
-      <option value="" selected disabled>Select an option</option>
-      <option value="Phone Call">Phone Call</option>
-      <option value="Email">Email</option>
-    </select>
-  </div>
-</div>
+<!-- =========================================================
+     PAGE HERO
+     ========================================================= -->
 
-<div class="form-row">
-  <div class="form-field">
-    <label for="appointmentType">Appointment Type <span>*</span></label>
-    <select id="appointmentType" name="appointment_type" required>
-      <option value="" selected disabled>Select appointment type</option>
-      <option value="New Urology Consultation">New Urology Consultation</option>
-      <option value="Follow-up Consultation">Follow-up Consultation</option>
-      <option value="Urology Second Opinion">Urology Second Opinion</option>
-      <option value="Robotic Urology Consultation">Robotic Urology Consultation</option>
-      <option value="Uro-Oncology Consultation">Uro-Oncology Consultation</option>
-      <option value="Reconstructive Urology Consultation">Reconstructive Urology Consultation</option>
-    </select>
+<section class="page-hero page-hero-enhanced">
+
+  <div class="container reveal">
+
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> / Contact
+    </div>
+
+    <div class="kicker">
+      Appointments &amp; Location
+    </div>
+
+    <h1>
+      Consult Dr. Tikenjit Mazumdar in Bongaigaon.
+    </h1>
+
+    <p class="lead">
+      Schedule an appointment before visiting to confirm availability
+      and consultation details.
+    </p>
+
   </div>
-  <div class="form-field">
-    <label for="preferredDate">Preferred Date</label>
-    <input id="preferredDate" name="preferred_date" type="date">
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT + APPOINTMENT
+     ========================================================= -->
+
+<section class="section">
+
+  <div class="container contact-grid">
+
+
+    <!-- LEFT CONTACT CARD -->
+
+    <div class="card reveal">
+
+      <div class="kicker">
+        Appointment
+      </div>
+
+      <h2>
+        Get in touch.
+      </h2>
+
+
+      <div class="contact-item">
+
+        <div class="icon">☎</div>
+
+        <div>
+
+          <strong>
+            +91 94357 20622
+          </strong>
+
+          <br>
+
+          <a
+            href="tel:+919435720622"
+            style="color:var(--teal);font-weight:800"
+          >
+            Call now
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="icon">☎</div>
+
+        <div>
+
+          <strong>
+            +91 97077 17198
+          </strong>
+
+          <br>
+
+          <a
+            href="tel:+919707717198"
+            style="color:var(--teal);font-weight:800"
+          >
+            Call now
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="icon">☎</div>
+
+        <div>
+
+          <strong>
+            +91 98642 38463
+          </strong>
+
+          <br>
+
+          <a
+            href="tel:+919864238463"
+            style="color:var(--teal);font-weight:800"
+          >
+            Call now
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="contact-item">
+
+        <div class="icon">⌖</div>
+
+        <div>
+
+          <strong>
+            Lower Assam Hospital &amp; Research Centre
+          </strong>
+
+          <br>
+
+          <span class="muted">
+            Bongaigaon, Assam
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <a
+        class="btn btn-primary"
+        href="#appointmentForm"
+      >
+        Request Appointment →
+      </a>
+
+    </div>
+
+
+    <!-- RIGHT APPOINTMENT FORM -->
+
+    <div class="card reveal">
+
+      <div class="kicker">
+        Appointment Request
+      </div>
+
+      <h2>
+        Send your details securely.
+      </h2>
+
+
+      <form
+        id="appointmentForm"
+        class="form appointment-form"
+        method="POST"
+        action="#"
+        novalidate
+        data-google-sheets-form="true"
+      >
+
+
+        <!-- NAME + EMAIL -->
+
+        <div class="form-row">
+
+          <div class="form-field">
+
+            <label for="name">
+              Full Name <span>*</span>
+            </label>
+
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Enter your full name"
+            >
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="email">
+              Email Address <span>*</span>
+            </label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="you@example.com"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- PHONE + CONTACT -->
+
+        <div class="form-row">
+
+          <div class="form-field">
+
+            <label for="phone">
+              Phone Number <span>*</span>
+            </label>
+
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              required
+              autocomplete="tel"
+              inputmode="tel"
+              placeholder="+91 98765 43210"
+            >
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="preferred">
+              Preferred Contact <span>*</span>
+            </label>
+
+            <select
+              id="preferred"
+              name="preferred_contact"
+              required
+            >
+
+              <option
+                value=""
+                selected
+                disabled
+              >
+                Select an option
+              </option>
+
+              <option value="Phone Call">
+                Phone Call
+              </option>
+
+              <option value="Email">
+                Email
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- APPOINTMENT TYPE + DATE -->
+
+        <div class="form-row">
+
+          <div class="form-field">
+
+            <label for="appointmentType">
+              Appointment Type <span>*</span>
+            </label>
+
+            <select
+              id="appointmentType"
+              name="appointment_type"
+              required
+            >
+
+              <option
+                value=""
+                selected
+                disabled
+              >
+                Select appointment type
+              </option>
+
+              <option value="New Urology Consultation">
+                New Urology Consultation
+              </option>
+
+              <option value="Follow-up Consultation">
+                Follow-up Consultation
+              </option>
+
+              <option value="Urology Second Opinion">
+                Urology Second Opinion
+              </option>
+
+              <option value="Robotic Urology Consultation">
+                Robotic Urology Consultation
+              </option>
+
+              <option value="Uro-Oncology Consultation">
+                Uro-Oncology Consultation
+              </option>
+
+              <option value="Reconstructive Urology Consultation">
+                Reconstructive Urology Consultation
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-field">
+
+            <label for="preferredDate">
+              Preferred Date
+            </label>
+
+            <input
+              id="preferredDate"
+              name="preferred_date"
+              type="date"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-field">
+
+          <label for="message">
+            Message / Concern <span>*</span>
+          </label>
+
+          <textarea
+            id="message"
+            name="message"
+            required
+            placeholder="Briefly describe your concern or appointment request"
+          ></textarea>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div
+          id="appointmentStatus"
+          class="form-status"
+          role="status"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- SUBMIT BUTTON -->
+
+        <button
+          id="appointmentSubmit"
+          class="btn btn-dark form-submit-btn"
+          type="submit"
+        >
+
+          <span class="button-text">
+            Send Appointment Request →
+          </span>
+
+          <span
+            class="button-loader"
+            aria-hidden="true"
+          >
+
+            <span class="button-spinner"></span>
+
+            Sending Request...
+
+          </span>
+
+        </button>
+
+
+        <p class="form-note">
+          Your details are used only to respond to your appointment request.
+        </p>
+
+      </form>
+
+    </div>
+
   </div>
-</div>
 
-<div class="form-field">
-  <label for="message">Message / Concern <span>*</span></label>
-  <textarea id="message" name="message" required placeholder="Briefly describe your concern or appointment request"></textarea>
-</div>
+</section>
 
-<div id="appointmentStatus" class="form-status" role="status" aria-live="polite"></div>
-<button id="appointmentSubmit" class="btn btn-dark form-submit-btn" type="submit">Send Appointment Request →</button>
-<p class="form-note">Your details are used only to respond to your appointment request.</p>
-</form></div>
-</div></section>
-<section class="section-sm"><div class="container"><div class="split"><div class="about-photo reveal" style="min-height:390px"><img src="images/hospital/urology-conference.jpg" alt="Hospital building"><div class="photo-caption"><strong>Lower Assam Hospital &amp; Research Centre</strong><span>Bongaigaon, Assam</span></div></div><div class="reveal"><div class="kicker">Hospital Location</div><h2>Lower Assam Hospital &amp; Research Centre</h2><p class="muted">The doctor profile lists this hospital as the current professional location. Use the exact Google Maps link supplied by the doctor for navigation.</p><a class="btn btn-primary" href="https://maps.app.goo.gl/F3hCe2oHAdJmzH7W6" target="_blank" rel="noopener">Open Google Maps →</a></div></div></div></section>
-<section class="section-sm"><div class="container"><div class="map-wrap reveal"><iframe src="https://www.google.com/maps?q=Lower%20Assam%20Hospital%20and%20Research%20Centre%2C%20Bongaigaon%2C%20Assam&output=embed" loading="lazy" title="Lower Assam Hospital and Research Centre map"></iframe></div><p class="muted" style="margin-top:12px;font-size:13px">Exact map location supplied by the doctor: <a href="https://maps.app.goo.gl/F3hCe2oHAdJmzH7W6" target="_blank" rel="noopener" style="color:var(--teal);font-weight:800">Open Google Maps location →</a></p></div></section>
 
-<section class="section section-soft"><div class="container"><div class="grid-3"><div class="blue-soft reveal"><div class="kicker">Before You Visit</div><h3>Prepare your records</h3><p class="muted">Bring previous medical reports, diagnostic test results, scans, prescriptions and relevant treatment records if available.</p></div><div class="blue-soft reveal"><div class="kicker">Appointment</div><h3>Schedule ahead</h3><p class="muted">Patients are recommended to schedule an appointment before visiting to confirm consultation availability.</p></div><div class="blue-soft reveal"><div class="kicker">Location</div><h3>Lower Assam Hospital &amp; Research Centre</h3><p class="muted">Bongaigaon, Assam. Use the map and contact details on this page to plan your visit.</p></div></div></div></section>
+<!-- =========================================================
+     HOSPITAL LOCATION
+     ========================================================= -->
+
+<section class="section-sm">
+
+  <div class="container">
+
+    <div class="split">
+
+      <div
+        class="about-photo reveal"
+        style="min-height:390px"
+      >
+
+        <img
+          src="images/hospital/urology-conference.jpg"
+          alt="Lower Assam Hospital & Research Centre"
+        >
+
+        <div class="photo-caption">
+
+          <strong>
+            Lower Assam Hospital &amp; Research Centre
+          </strong>
+
+          <span>
+            Bongaigaon, Assam
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="reveal">
+
+        <div class="kicker">
+          Hospital Location
+        </div>
+
+        <h2>
+          Lower Assam Hospital &amp; Research Centre
+        </h2>
+
+        <p class="muted">
+          The doctor profile lists this hospital as the current
+          professional location. Use the exact Google Maps link
+          supplied by the doctor for navigation.
+        </p>
+
+        <a
+          class="btn btn-primary"
+          href="https://maps.app.goo.gl/F3hCe2oHAdJmzH7W6"
+          target="_blank"
+          rel="noopener"
+        >
+          Open Google Maps →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     MAP
+     ========================================================= -->
+
+<section class="section-sm">
+
+  <div class="container">
+
+    <div class="map-wrap reveal">
+
+      <iframe
+        src="https://www.google.com/maps?q=Lower%20Assam%20Hospital%20and%20Research%20Centre%2C%20Bongaigaon%2C%20Assam&output=embed"
+        loading="lazy"
+        title="Lower Assam Hospital and Research Centre map"
+      ></iframe>
+
+    </div>
+
+    <p
+      class="muted"
+      style="margin-top:12px;font-size:13px"
+    >
+
+      Exact map location supplied by the doctor:
+
+      <a
+        href="https://maps.app.goo.gl/F3hCe2oHAdJmzH7W6"
+        target="_blank"
+        rel="noopener"
+        style="color:var(--teal);font-weight:800"
+      >
+        Open Google Maps location →
+      </a>
+
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- =========================================================
+     BEFORE YOU VISIT
+     ========================================================= -->
+
+<section class="section section-soft">
+
+  <div class="container">
+
+    <div class="grid-3">
+
+
+      <div class="blue-soft reveal">
+
+        <div class="kicker">
+          Before You Visit
+        </div>
+
+        <h3>
+          Prepare your records
+        </h3>
+
+        <p class="muted">
+          Bring previous medical reports, diagnostic test results,
+          scans, prescriptions and relevant treatment records if available.
+        </p>
+
+      </div>
+
+
+      <div class="blue-soft reveal">
+
+        <div class="kicker">
+          Appointment
+        </div>
+
+        <h3>
+          Schedule ahead
+        </h3>
+
+        <p class="muted">
+          Patients are recommended to schedule an appointment before
+          visiting to confirm consultation availability.
+        </p>
+
+      </div>
+
+
+      <div class="blue-soft reveal">
+
+        <div class="kicker">
+          Location
+        </div>
+
+        <h3>
+          Lower Assam Hospital &amp; Research Centre
+        </h3>
+
+        <p class="muted">
+          Bongaigaon, Assam. Use the map and contact details on this
+          page to plan your visit.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
 
 </main>
 
-<footer class="footer"><div class="container footer-grid">
-<div><a class="brand" href="./index.html"><span class="brand-mark brand-logo"><img src="./images/doctor/dr-tikenjit-avatar.jpg" alt="Dr. Tikenjit Mazumdar"></span><span><strong style="color:#fff">Dr. Tikenjit Mazumdar</strong><small style="color:#9db9b7">Global standard in urology care</small></span></a><p>Senior Consultant Urology at Lower Assam Hospital &amp; Research Centre, Bongaigaon, Assam.</p></div>
-<div><h3>Explore</h3><p><a href="./about.html">About Dr. Tikenjit</a></p><p><a href="./services.html">Urology Services</a></p><p><a href="./blog.html">Patient Insights</a></p></div>
-<div><h3>Appointments</h3><p><a href="tel:+919435720622">+91 94357 20622</a></p><p><a href="tel:+919707717198">+91 97077 17198</a></p><p><a href="tel:+919864238463">+91 98642 38463</a></p><p>Lower Assam Hospital &amp; Research Centre<br>Bongaigaon, Assam</p></div>
-</div><div class="container footer-bottom"><span>© <span data-year></span> Dr. Tikenjit Mazumdar. All rights reserved.</span><span>Website by PratecktaSoft</span></div></footer>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+
+    <div>
+
+      <a
+        class="brand"
+        href="./index.html"
+      >
+
+        <span class="brand-mark brand-logo">
+
+          <img
+            src="./images/doctor/dr-tikenjit-avatar.jpg"
+            alt="Dr. Tikenjit Mazumdar"
+          >
+
+        </span>
+
+        <span>
+
+          <strong style="color:#fff">
+            Dr. Tikenjit Mazumdar
+          </strong>
+
+          <small style="color:#9db9b7">
+            Global standard in urology care
+          </small>
+
+        </span>
+
+      </a>
+
+      <p>
+        Senior Consultant Urology at Lower Assam Hospital &
+        Research Centre, Bongaigaon, Assam.
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h3>
+        Explore
+      </h3>
+
+      <p>
+        <a href="./about.html">
+          About Dr. Tikenjit
+        </a>
+      </p>
+
+      <p>
+        <a href="./services.html">
+          Urology Services
+        </a>
+      </p>
+
+      <p>
+        <a href="./blog.html">
+          Patient Insights
+        </a>
+      </p>
+
+    </div>
+
+
+    <div>
+
+      <h3>
+        Appointments
+      </h3>
+
+      <p>
+        <a href="tel:+919435720622">
+          +91 94357 20622
+        </a>
+      </p>
+
+      <p>
+        <a href="tel:+919707717198">
+          +91 97077 17198
+        </a>
+      </p>
+
+      <p>
+        <a href="tel:+919864238463">
+          +91 98642 38463
+        </a>
+      </p>
+
+      <p>
+        Lower Assam Hospital &amp; Research Centre<br>
+        Bongaigaon, Assam
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="container footer-bottom">
+
+    <span>
+      © <span data-year></span>
+      Dr. Tikenjit Mazumdar. All rights reserved.
+    </span>
+
+    <span>
+      Website by PratecktaSoft
+    </span>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     SITE SCRIPTS
+     ========================================================= -->
 
 <script src="./js/site-config.js" defer></script>
+
 <script src="./js/main.js" defer></script>
-<a class="floating-appointment" href="contact.html">☎ &nbsp; Book Appointment</a></body></html>
+
+
+<!-- =========================================================
+     GOOGLE SHEETS APPOINTMENT FORM
+     ========================================================= -->
+
+<script>
+
+(function () {
+
+  "use strict";
+
+
+  /* ========================================================
+     GOOGLE APPS SCRIPT WEB APP
+     ======================================================== */
+
+  const GOOGLE_SHEETS_ENDPOINT =
+    "https://script.google.com/macros/s/AKfycbyqApMfcI_MoyIuipWuWGb_qK2Da6DJA7qflKYPd4pObXtN6dymsgvZhO81DzNyokX3kg/exec";
+
+
+  /* ========================================================
+     ELEMENTS
+     ======================================================== */
+
+  const form =
+    document.getElementById("appointmentForm");
+
+  const submitButton =
+    document.getElementById("appointmentSubmit");
+
+  const statusBox =
+    document.getElementById("appointmentStatus");
+
+  const loader =
+    document.getElementById("appointmentLoader");
+
+  const toast =
+    document.getElementById("appointmentToast");
+
+  const toastIcon =
+    document.getElementById("appointmentToastIcon");
+
+  const toastTitle =
+    document.getElementById("appointmentToastTitle");
+
+  const toastMessage =
+    document.getElementById("appointmentToastMessage");
+
+  const toastClose =
+    document.getElementById("appointmentToastClose");
+
+  const dateInput =
+    document.getElementById("preferredDate");
+
+
+  if (!form) {
+    return;
+  }
+
+
+  /* ========================================================
+     SET MINIMUM DATE TO TODAY
+     ======================================================== */
+
+  if (dateInput) {
+
+    const today =
+      new Date();
+
+    const year =
+      today.getFullYear();
+
+    const month =
+      String(today.getMonth() + 1).padStart(2, "0");
+
+    const day =
+      String(today.getDate()).padStart(2, "0");
+
+    dateInput.min =
+      `${year}-${month}-${day}`;
+
+  }
+
+
+  /* ========================================================
+     TOAST CLOSE
+     ======================================================== */
+
+  toastClose.addEventListener(
+    "click",
+    function () {
+
+      hideToast();
+
+    }
+  );
+
+
+  let toastTimer = null;
+
+
+  function showToast(
+    type,
+    title,
+    message
+  ) {
+
+    clearTimeout(toastTimer);
+
+    toast.classList.remove(
+      "success",
+      "error"
+    );
+
+    toast.classList.add(type);
+
+    toastIcon.textContent =
+      type === "success"
+        ? "✓"
+        : "!";
+
+    toastTitle.textContent =
+      title;
+
+    toastMessage.textContent =
+      message;
+
+    toast.classList.add("show");
+
+    toastTimer =
+      setTimeout(
+        hideToast,
+        6500
+      );
+
+  }
+
+
+  function hideToast() {
+
+    toast.classList.remove("show");
+
+  }
+
+
+  /* ========================================================
+     LOADER
+     ======================================================== */
+
+  function showLoader() {
+
+    loader.classList.add("active");
+
+    loader.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+    document.body.style.overflow =
+      "hidden";
+
+  }
+
+
+  function hideLoader() {
+
+    loader.classList.remove("active");
+
+    loader.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+    document.body.style.overflow =
+      "";
+
+  }
+
+
+  /* ========================================================
+     INLINE STATUS
+     ======================================================== */
+
+  function setStatus(
+    type,
+    message
+  ) {
+
+    statusBox.className =
+      "form-status " + type;
+
+    statusBox.textContent =
+      message;
+
+  }
+
+
+  function clearStatus() {
+
+    statusBox.className =
+      "form-status";
+
+    statusBox.textContent =
+      "";
+
+  }
+
+
+  /* ========================================================
+     CLEAR FIELD ERRORS
+     ======================================================== */
+
+  function clearFieldErrors() {
+
+    form
+      .querySelectorAll(".field-error")
+      .forEach(function (field) {
+
+        field.classList.remove(
+          "field-error"
+        );
+
+      });
+
+  }
+
+
+  /* ========================================================
+     VALIDATION
+     ======================================================== */
+
+  function validateForm() {
+
+    clearFieldErrors();
+
+    let valid = true;
+
+    const requiredFields =
+      form.querySelectorAll(
+        "[required]"
+      );
+
+
+    requiredFields.forEach(
+      function (field) {
+
+        if (
+          !field.value ||
+          !field.value.trim()
+        ) {
+
+          const parent =
+            field.closest(".form-field");
+
+          if (parent) {
+
+            parent.classList.add(
+              "field-error"
+            );
+
+          }
+
+          valid = false;
+
+        }
+
+      }
+    );
+
+
+    /* Email validation */
+
+    const email =
+      document.getElementById("email");
+
+    if (
+      email.value.trim() &&
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        .test(email.value.trim())
+    ) {
+
+      email
+        .closest(".form-field")
+        .classList.add(
+          "field-error"
+        );
+
+      valid = false;
+
+    }
+
+
+    /* Phone validation */
+
+    const phone =
+      document.getElementById("phone");
+
+    const phoneDigits =
+      phone.value.replace(
+        /\D/g,
+        ""
+      );
+
+    if (
+      phoneDigits.length < 10 ||
+      phoneDigits.length > 15
+    ) {
+
+      phone
+        .closest(".form-field")
+        .classList.add(
+          "field-error"
+        );
+
+      valid = false;
+
+    }
+
+
+    if (!valid) {
+
+      setStatus(
+        "error",
+        "Please check the highlighted fields and complete all required information."
+      );
+
+      showToast(
+        "error",
+        "Please check the form",
+        "Some required information is missing or invalid."
+      );
+
+      const firstError =
+        form.querySelector(
+          ".field-error input, .field-error select, .field-error textarea"
+        );
+
+      if (firstError) {
+
+        firstError.focus({
+          preventScroll: false
+        });
+
+      }
+
+    }
+
+    return valid;
+
+  }
+
+
+  /* ========================================================
+     FORM SUBMISSION
+
+     Capture phase is used so this page's handler takes
+     control even if main.js has another appointment listener.
+     ======================================================== */
+
+  form.addEventListener(
+    "submit",
+    async function (event) {
+
+      event.preventDefault();
+
+      event.stopImmediatePropagation();
+
+
+      clearStatus();
+
+
+      /* Prevent double click */
+
+      if (
+        submitButton.classList.contains(
+          "is-loading"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      /* Validate */
+
+      if (!validateForm()) {
+
+        return;
+
+      }
+
+
+      /* Loading state */
+
+      submitButton.classList.add(
+        "is-loading"
+      );
+
+      submitButton.disabled =
+        true;
+
+      form.setAttribute(
+        "aria-busy",
+        "true"
+      );
+
+
+      showLoader();
+
+
+      try {
+
+        /*
+         * URLSearchParams creates an
+         * application/x-www-form-urlencoded
+         * POST body.
+         */
+
+        const formData =
+          new FormData(form);
+
+        const params =
+          new URLSearchParams();
+
+
+        formData.forEach(
+          function (value, key) {
+
+            params.append(
+              key,
+              value
+            );
+
+          }
+        );
+
+
+        /*
+         * Google Apps Script web apps
+         * receive POST requests through doPost(e).
+         *
+         * no-cors is intentional here because
+         * Google Apps Script does not expose the
+         * response headers to the browser.
+         */
+
+        await fetch(
+          GOOGLE_SHEETS_ENDPOINT,
+          {
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+              "Content-Type":
+                "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+
+            body: params.toString()
+          }
+        );
+
+
+        /*
+         * With no-cors, the browser cannot inspect
+         * the Google response. A resolved fetch means
+         * the request was sent without a browser-level
+         * network error.
+         */
+
+        hideLoader();
+
+
+        setStatus(
+          "success",
+          "Thank you. Your appointment request has been submitted successfully. The clinic will contact you regarding your request."
+        );
+
+
+        showToast(
+          "success",
+          "Appointment Request Sent",
+          "Your details have been submitted successfully. The clinic will contact you soon."
+        );
+
+
+        form.reset();
+
+
+        /* Restore minimum date */
+
+        if (dateInput) {
+
+          const today =
+            new Date();
+
+          const year =
+            today.getFullYear();
+
+          const month =
+            String(
+              today.getMonth() + 1
+            ).padStart(2, "0");
+
+          const day =
+            String(
+              today.getDate()
+            ).padStart(2, "0");
+
+          dateInput.min =
+            `${year}-${month}-${day}`;
+
+        }
+
+
+        /* Scroll to confirmation */
+
+        setTimeout(
+          function () {
+
+            statusBox.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+          },
+          150
+        );
+
+
+      } catch (error) {
+
+        console.error(
+          "Appointment submission error:",
+          error
+        );
+
+
+        hideLoader();
+
+
+        setStatus(
+          "error",
+          "We could not send your appointment request. Please try again or call the clinic directly."
+        );
+
+
+        showToast(
+          "error",
+          "Submission Failed",
+          "Please try again. If the problem continues, please call the clinic."
+        );
+
+
+      } finally {
+
+        submitButton.classList.remove(
+          "is-loading"
+        );
+
+        submitButton.disabled =
+          false;
+
+        form.setAttribute(
+          "aria-busy",
+          "false"
+        );
+
+      }
+
+    },
+    true
+  );
+
+
+  /* ========================================================
+     REMOVE ERROR STATE WHEN USER EDITS FIELD
+     ======================================================== */
+
+  form
+    .querySelectorAll(
+      "input, select, textarea"
+    )
+    .forEach(
+      function (field) {
+
+        field.addEventListener(
+          "input",
+          function () {
+
+            const parent =
+              field.closest(".form-field");
+
+            if (parent) {
+
+              parent.classList.remove(
+                "field-error"
+              );
+
+            }
+
+          }
+        );
+
+
+        field.addEventListener(
+          "change",
+          function () {
+
+            const parent =
+              field.closest(".form-field");
+
+            if (parent) {
+
+              parent.classList.remove(
+                "field-error"
+              );
+
+            }
+
+          }
+        );
+
+      }
+    );
+
+})();
+
+</script>
+
+
+<!-- =========================================================
+     FLOATING APPOINTMENT
+     ========================================================= -->
+
+<a
+  class="floating-appointment"
+  href="contact.html"
+>
+  ☎ &nbsp; Book Appointment
+</a>
+
+</body>
+</html>
