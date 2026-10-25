@@ -29,7 +29,7 @@
 
 .footer-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(150px, .75fr) minmax(220px, 1fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(130px, .7fr) minmax(190px, .9fr) minmax(190px, .9fr);
   gap: 48px;
   align-items: start;
   padding-top: 64px;
@@ -241,12 +241,88 @@
     font-size: 13px;
   }
 }
+
+/* Responsive footer social media links */
+.footer-social {
+  min-width: 0;
+}
+
+.footer-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 13px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 10px;
+  color: #fff;
+  background: rgba(255,255,255,.06);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.footer-social-link svg {
+  display: block;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+}
+
+.footer-social-link.instagram svg {
+  color: #f3a1c6;
+}
+
+.footer-social-link.facebook svg {
+  color: #8ab4ff;
+}
+
+.footer-social-link:hover,
+.footer-social-link:focus-visible {
+  background: rgba(255,255,255,.13);
+  border-color: rgba(255,255,255,.4);
+  transform: translateY(-2px);
+}
+
+.footer-social-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .footer-social-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-social-link {
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer-social-links {
+    grid-template-columns: 1fr;
+  }
+}
+
 </style>
 
 </head>
 <body>
 
-<div class="topbar"><div class="container"><span>Lower Assam Hospital &amp; Research Centre · Bongaigaon, Assam</span><span class="top-hide">Appointments: <a href="tel:+919435720622">+91 94357 20622</a></span></div></div>
+<div class="topbar"><div class="container"><span>Lower Assam Hospital &amp; Research Centre · Bongaigaon, Assam</span><span class="top-hide">Appointments: <a href="tel:+919864238463">+91 98642 38463</a></span></div></div>
 <header class="site-header"><div class="container nav">
 <a class="brand" href="./index.html"><span class="brand-mark brand-logo"><img src="./images/doctor/dr-tikenjit-avatar.jpg" alt="Dr. Tikenjit Mazumdar"></span><span><strong>Dr. Tikenjit Mazumdar</strong><small>Senior Consultant Urology</small></span></a>
 <button class="menu-btn" aria-label="Open navigation" aria-expanded="false">☰</button>
@@ -273,7 +349,7 @@
 <div class="eyebrow">Advanced Urology Care · Bongaigaon, Assam</div>
 <h1>Senior Consultant Urologist in Bongaigaon — Dr. Tikenjit Mazumdar</h1>
 <p class="lead">Global-standard urology care with focused expertise in robotic urology, uro-oncology and reconstructive urology at Lower Assam Hospital &amp; Research Centre.</p>
-<div class="hero-actions"><a class="btn btn-primary" href="contact.html">Book a Consultation →</a><a class="btn btn-outline" href="tel:+919435720622">Call +91 94357 20622</a></div>
+<div class="hero-actions"><a class="btn btn-primary" href="contact.html">Book a Consultation →</a><a class="btn btn-outline" href="tel:+919864238463">Call +91 98642 38463</a></div>
 <div class="trust-row"><div class="trust-item"><strong>23+</strong><span>Years of practice</span></div><div class="trust-item"><strong>3</strong><span>Languages + Bengali/Assamese/Hindi/English</span></div><div class="trust-item"><strong>Urology</strong><span>Senior Consultant</span></div></div>
 </div>
 <div class="hero-card reveal"><div class="hero-photo hero-slider" data-hero-slider><video class="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="videos/doctor-urology-procedure-poster.jpg"><source src="videos/doctor-urology-procedure.mp4" type="video/mp4"></video>
@@ -569,6 +645,39 @@
       <p><a href="./blog.html">Patient Insights</a></p>
     </div>
 
+
+    <div class="footer-social">
+      <h3>Follow Us</h3>
+      <div class="footer-social-links">
+        <a
+          class="footer-social-link instagram"
+          href="https://www.instagram.com/drtikenjitmazumdar?dlrf=eTBtbzdudGdqZnJt"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow Dr. Tikenjit Mazumdar on Instagram (opens in a new tab)"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="17.5" cy="6.8" r="1.1" fill="currentColor"/>
+          </svg>
+          <span>Instagram</span>
+        </a>
+        <a
+          class="footer-social-link facebook"
+          href="https://www.facebook.com/share/1EfZuys221/?mibextid=wwXIfr"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit Dr. Tikenjit Mazumdar on Facebook (opens in a new tab)"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M13.6 21v-8.2h2.8l.42-3.2H13.6V7.55c0-.93.26-1.56 1.6-1.56h1.72V3.13A22.2 22.2 0 0 0 14.4 3c-2.5 0-4.2 1.52-4.2 4.31V9.6H7.4v3.2h2.8V21h3.4Z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+      </div>
+    </div>
+
     <div class="footer-appointments">
       <h3>Appointments</h3>
 
@@ -588,4 +697,6 @@
 </footer>
 
 <script src="./js/site-config.js"></script><script src="./js/main.js" defer></script>
-<a class="floating-appointment" href="contact.html">☎ &nbsp; Book Appointment</a></body></html>
+<a class="floating-appointment" href="tel:+919864238463">
+  ☎ &nbsp; +91 98642 38463 &nbsp; | &nbsp; Book Appointment
+</a></body></html>
