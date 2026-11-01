@@ -11,11 +11,123 @@
 <link rel="stylesheet" href="./css/style.css">
 
 <style>
+
+  /* Instagram and Facebook buttons */
+
+.footer-social {
+
+  min-width: 0;
+
+}
+
+
+
+.footer-social-links {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+}
+
+
+
+.footer-social-link {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  min-height: 44px;
+
+  padding: 10px 13px;
+
+  border: 1px solid rgba(255,255,255,.18);
+
+  border-radius: 10px;
+
+  color: #fff;
+
+  background: rgba(255,255,255,.06);
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  line-height: 1.3;
+
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+
+}
+
+
+
+.footer-social-link svg {
+
+  display: block;
+
+  width: 19px;
+
+  height: 19px;
+
+  flex: 0 0 19px;
+
+}
+
+
+
+.footer-social-link.instagram svg {
+
+  color: #f3a1c6;
+
+}
+
+
+
+.footer-social-link.facebook svg {
+
+  color: #8ab4ff;
+
+}
+
+
+
+.footer-social-link:hover,
+
+.footer-social-link:focus-visible {
+
+  background: rgba(255,255,255,.13);
+
+  border-color: rgba(255,255,255,.4);
+
+  transform: translateY(-2px);
+
+}
+
+
+
+.footer-social-link:focus-visible {
+
+  outline: 2px solid #fff;
+
+  outline-offset: 3px;
+
+}
+
 /* =========================================================
    MOBILE-RESPONSIVE FOOTER FIX
    Added specifically for the footer without changing the
    rest of the page design.
    ========================================================= */
+   
 
 .footer {
   width: 100%;
@@ -568,6 +680,81 @@
       <p><a href="./services.html">Urology Services</a></p>
       <p><a href="./blog.html">Patient Insights</a></p>
     </div>
+
+    <div class="footer-social">
+
+      <h3>Follow Us</h3>
+
+
+
+      <div class="footer-social-links">
+
+
+
+        <a
+
+          class="footer-social-link instagram"
+
+          href="https://www.instagram.com/drtikenjitmazumdar?dlrf=eTBtbzdudGdqZnJt"
+
+          target="_blank"
+
+          rel="noopener noreferrer"
+
+          aria-label="Follow Dr. Tikenjit Mazumdar on Instagram (opens in a new tab)"
+
+        >
+
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+            <rect x="3" y="3" width="18" height="18" rx="5"
+
+              stroke="currentColor" stroke-width="1.8"/>
+
+            <circle cx="12" cy="12" r="4"
+
+              stroke="currentColor" stroke-width="1.8"/>
+
+            <circle cx="17.5" cy="6.8" r="1.1" fill="currentColor"/>
+
+          </svg>
+
+          <span>Instagram</span>
+
+        </a>
+
+
+
+        <a
+
+          class="footer-social-link facebook"
+
+          href="https://www.facebook.com/share/1EfZuys221/?mibextid=wwXIfr"
+
+          target="_blank"
+
+          rel="noopener noreferrer"
+
+          aria-label="Visit Dr. Tikenjit Mazumdar on Facebook (opens in a new tab)"
+
+        >
+
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+
+            <path d="M13.6 21v-8.2h2.8l.42-3.2H13.6V7.55c0-.93.26-1.56 1.6-1.56h1.72V3.13A22.2 22.2 0 0 0 14.4 3c-2.5 0-4.2 1.52-4.2 4.31V9.6H7.4v3.2h2.8V21h3.4Z"/>
+
+          </svg>
+
+          <span>Facebook</span>
+
+        </a>
+
+
+
+      </div>
+
+    </div>
+
 
     <div class="footer-appointments">
       <h3>Appointments</h3>
